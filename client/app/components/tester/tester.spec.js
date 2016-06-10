@@ -3,6 +3,8 @@ import TesterController from './tester.controller'
 import TesterComponent from './tester.component'
 import TesterTemplate from './tester.html'
 
+import questionWordFactory from 'factories/questionWord/questionWord.factory'
+
 import { expect } from '../../../../node_modules/chai/chai'
 
 describe('Tester', () => {
@@ -11,14 +13,14 @@ describe('Tester', () => {
   beforeEach(window.module(TesterModule.name))
   beforeEach(inject((_$rootScope_, _$log_) => {
     makeController = () => {
-      return new TesterController(_$log_)
+      return new TesterController(_$log_, new questionWordFactory())
     }
   }))
 
   describe('Controller', () => {
-    it('has a property "words"', () => {
+    it('has a property "questionnaire"', () => {
       let controller = makeController()
-      expect(controller).to.have.property('words')
+      expect(controller).to.have.property('questionnaire')
     })
   })
 

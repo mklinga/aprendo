@@ -24,8 +24,8 @@ describe('TestWord', () => {
   })
 
   describe('Template', () => {
-    it('has <h1>', () => {
-      expect(TestWordTemplate).to.match(/h1/g)
+    it('has <h3>', () => {
+      expect(TestWordTemplate).to.match(/h3/g)
     })
   })
 

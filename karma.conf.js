@@ -1,3 +1,5 @@
+var path = require('path')
+
 module.exports = function (config) {
   config.set({
     // base path used to resolve all patterns
@@ -29,6 +31,9 @@ module.exports = function (config) {
 
     webpack: {
       devtool: 'inline-source-map',
+      resolve: {
+        root: path.resolve('./client/app')
+      },
       module: {
         loaders: [
           { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
