@@ -20,6 +20,7 @@ describe('TestWord', () => {
   })
 
   describe('Controller', () => {
+
   })
 
   describe('Template', () => {
@@ -42,6 +43,10 @@ describe('TestWord', () => {
 
     it('invokes the right controller', () => {
       expect(component.controller).to.equal(TestWordController)
+    })
+
+    it('has word as a binding', () => {
+      expect(component.bindings).to.have.property('word')
     })
   })
 })
