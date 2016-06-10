@@ -5,7 +5,7 @@ import NavbarTemplate from './navbar.html'
 
 import { expect } from 'chai'
 
-describe('Navbar', () => {
+describe.only('Navbar', () => {
   let makeController
 
   beforeEach(window.module(NavbarModule.name))
