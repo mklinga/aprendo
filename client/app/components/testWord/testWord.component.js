@@ -4,7 +4,9 @@ import './testWord.scss'
 
 let testWordComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    word: '<'
+  },
   template,
   controller,
   controllerAs: 'vm'

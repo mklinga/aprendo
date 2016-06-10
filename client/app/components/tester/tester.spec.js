@@ -9,15 +9,14 @@ describe('Tester', () => {
   let makeController
 
   beforeEach(window.module(TesterModule.name))
-  beforeEach(inject((_$rootScope_) => {
+  beforeEach(inject((_$rootScope_, _$log_) => {
     makeController = () => {
-      return new TesterController()
+      return new TesterController(_$log_)
     }
   }))
 
   describe('Controller', () => {
-    // controller specs
-    it('has a property "words"', () => { // erase if removing this.name from the controller
+    it('has a property "words"', () => {
       let controller = makeController()
       expect(controller).to.have.property('words')
     })

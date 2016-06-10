@@ -9,9 +9,9 @@ describe('TestWord', () => {
   let makeController
 
   beforeEach(window.module(TestWordModule.name))
-  beforeEach(inject((_$rootScope_) => {
+  beforeEach(inject((_$rootScope_, _$log_) => {
     makeController = () => {
-      return new TestWordController()
+      return new TestWordController(_$log_)
     }
   }))
 
@@ -20,18 +20,11 @@ describe('TestWord', () => {
   })
 
   describe('Controller', () => {
-    // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController()
-      expect(controller).to.have.property('name')
-    })
   })
 
   describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(TestWordTemplate).to.match(/{{\s?vm\.name\s?}}/g)
+    it('has <h1>', () => {
+      expect(TestWordTemplate).to.match(/h1/g)
     })
   })
 

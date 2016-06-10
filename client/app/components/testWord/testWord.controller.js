@@ -1,8 +1,8 @@
 class TestWordController {
-  constructor () {
+  constructor ($log) {
     'ngInject'
 
-    this.name = 'testWord'
+    $log.info(this)
   }
 }
 

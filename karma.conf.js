@@ -7,7 +7,10 @@ module.exports = function (config) {
     frameworks: ['mocha'],
 
     // list of files/patterns to load in the browser
-    files: [{ pattern: 'spec.bundle.js', watched: false }],
+    files: [
+      './node_modules/babel-polyfill/dist/polyfill.min.js',
+      { pattern: 'spec.bundle.js', watched: false }
+    ],
 
     // files to exclude
     exclude: [],
