@@ -1,6 +1,5 @@
-import template from './home.html';
-import controller from './home.controller';
-// import './home.styl';
+import template from './home.html'
+import controller from './home.controller'
 
 let homeComponent = {
   restrict: 'E',
@@ -8,6 +7,6 @@ let homeComponent = {
   template,
   controller,
   controllerAs: 'vm'
-};
+}
 
-export default homeComponent;
+export default homeComponent
