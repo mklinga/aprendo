@@ -103,15 +103,16 @@ const QuestionWordFactory = () => {
       }
 
       const finalQuestion = {
-        id: questionWord.id,
         question: {
           person,
           tense,
+          id: questionWord.id,
           value: questionWord.value[tense][person]
         },
         answer: {
           person,
           tense,
+          id: answer.id,
           value: answer.value[tense][person]
         }
       }

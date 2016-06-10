@@ -18,10 +18,34 @@ describe('Tester', () => {
   }))
 
   describe('Controller', () => {
-    it('has a property "questionnaire"', () => {
-      let controller = makeController()
-      expect(controller).to.have.property('questionnaire')
+    let controller
+
+    beforeEach(() => {
+      controller = makeController()
     })
+
+    describe('questionnaire', () => {
+      it('exists', () => {
+        expect(controller).to.have.property('questionnaire')
+      })
+
+      it('has 10 items', () => {
+        expect(controller.questionnaire).to.have.length(10)
+      })
+    })
+
+    describe('index', () => {
+      it('exists', () => {
+        expect(controller).to.have.property('index')
+      })
+    })
+
+    describe('correctAnswers', () => {
+      it('exists', () => {
+        expect(controller).to.have.property('correctAnswers')
+      })
+    })
+
   })
 
   describe('Template', () => {
