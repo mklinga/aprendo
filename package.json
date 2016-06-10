@@ -61,10 +61,11 @@
     "yargs": "^3.9.0"
   },
   "scripts": {
+    "lint": "eslint client",
+    "run": "gulp serve",
     "test": "karma start",
     "watch": "gulp serve",
-    "webpack": "gulp webpack",
-    "run": "gulp serve"
+    "webpack": "gulp webpack"
   },
   "keywords": [
     "angular",

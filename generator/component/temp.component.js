@@ -1,6 +1,6 @@
-import template from './<%= name %>.html';
-import controller from './<%= name %>.controller';
-import './<%= name %>.scss';
+import template from './<%= name %>.html'
+import controller from './<%= name %>.controller'
+import './<%= name %>.scss'
 
 let <%= name %>Component = {
   restrict: 'E',
@@ -8,6 +8,6 @@ let <%= name %>Component = {
   template,
   controller,
   controllerAs: 'vm'
-};
+}
 
-export default <%= name %>Component;
+export default <%= name %>Component
