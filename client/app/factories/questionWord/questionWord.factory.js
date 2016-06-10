@@ -77,47 +77,48 @@ const QuestionWordFactory = () => {
     }
   ]
 
-  const WORDS_IN_SPANISH = WORDS.filter(word => word.language === 'es')
-
   return {
-    getQuestionnaire (amount = 10) {
+    getQuestionnaire (amount = 10, from = 'en', to = 'es') {
       const result = []
       for (let i = 0; i < amount; i++) {
-        result.push(this.getQuestionWord())
+        result.push(this.getQuestionWord(from, to))
       }
 
       return result
     },
-    getQuestionWord () {
-      const questionWord = WORDS_IN_SPANISH[Math.floor(Math.random() * WORDS_IN_SPANISH.length)]
+    getQuestionWord (from = 'en', to = 'es', words = WORDS) {
+      const sourcePool = words.filter(word => word.language === from)
+
+      const questionWord = sourcePool[Math.floor(Math.random() * sourcePool.length)]
       const tense = 'present'
       const index = Math.floor(Math.random() * Object.keys(questionWord.value[tense]).length)
       const person = Object.keys(questionWord.value[tense])[index]
 
-      const answer = WORDS.find(word => {
-        return (questionWord.relations.includes(word.id))
+      const answer = words.find(word => {
+        return ((word.language === to) && (questionWord.relations.includes(word.id)))
       })
 
       if (!answer) {
         this.$log.error('No answer found!')
+        return null
       }
 
-      const finalQuestion = {
+      return ({
         question: {
           person,
           tense,
           id: questionWord.id,
+          language: questionWord.language,
           value: questionWord.value[tense][person]
         },
         answer: {
           person,
           tense,
           id: answer.id,
+          language: answer.language,
           value: answer.value[tense][person]
         }
-      }
-
-      return finalQuestion
+      })
     }
   }
 }

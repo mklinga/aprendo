@@ -42,9 +42,26 @@ describe('(Factory) QuestionWordFactory', () => {
       expect(word.answer.value).to.exist
     })
 
-    it('Should return a question that is different than answer', () => {
-      expect(word.answer).to.not.deep.equal(word.question)
+    it('Should return a question on a wanted language', () => {
+      word = questionWordFactory.getQuestionWord('en', 'es')
+      expect(word.question.language).to.equal('en')
+      word = questionWordFactory.getQuestionWord('es', 'en')
+      expect(word.question.language).to.equal('es')
     })
+
+    it('Should select from the given set of words', () => {
+      const WORDS = [
+        { id: 9999, language: 'mock', value: { present: { '1st': 'tengo', '2nd': 'tienes' } }, relations: [ 8888 ] },
+        { id: 8888, language: 'bock', value: { present: { '1st': 'have', '2nd': 'have' } }, relations: [ 9999 ] }
+      ]
+
+      word = questionWordFactory.getQuestionWord('mock', 'bock', WORDS)
+      expect(word.question.language).to.equal('mock')
+
+      word = questionWordFactory.getQuestionWord('bock', 'mock', WORDS)
+      expect(word.question.language).to.equal('bock')
+    })
+
   })
 
   describe('(Method) getQuestionnaire', () => {
@@ -54,13 +71,16 @@ describe('(Factory) QuestionWordFactory', () => {
       words = questionWordFactory.getQuestionnaire()
     })
 
-    it('Should exist', () => {
-      expect(words).to.exist
+    it('Should be an array', () => {
+      expect(words).to.be.an('array')
     })
 
-    it('Should have n amount of words', () => {
+    it('Should give a wanted amount of words', () => {
       words = questionWordFactory.getQuestionnaire(3)
       expect(words).to.have.a.lengthOf(3)
+
+      words = questionWordFactory.getQuestionnaire(5)
+      expect(words).to.have.a.lengthOf(5)
     })
   })
 
