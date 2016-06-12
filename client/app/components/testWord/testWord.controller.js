@@ -1,8 +1,8 @@
-class TestWordController {
-  constructor ($log) {
-    'ngInject'
+/* @flow */
 
-    $log.info(this)
+class TestWordController {
+  constructor () {
+    'ngInject'
   }
 }
 

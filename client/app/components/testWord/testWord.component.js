@@ -1,8 +1,12 @@
+/* @flow */
+
+import type { AngularComponent } from 'types/angular'
+
 import template from './testWord.html'
 import controller from './testWord.controller'
 import './testWord.scss'
 
-let testWordComponent = {
+let testWordComponent: AngularComponent = {
   restrict: 'E',
   bindings: {
     word: '<'
