@@ -15,10 +15,6 @@ describe('TestWord', () => {
     }
   }))
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-  })
-
   describe('Controller', () => {
 
   })
@@ -30,7 +26,6 @@ describe('TestWord', () => {
   })
 
   describe('Component', () => {
-    // component/directive specs
     let component = TestWordComponent
 
     it('includes the intended template', () => {
