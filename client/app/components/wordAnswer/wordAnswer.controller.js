@@ -1,3 +1,5 @@
+/* @flow */
+
 class WordAnswerController {
   constructor ($log) {
     'ngInject'

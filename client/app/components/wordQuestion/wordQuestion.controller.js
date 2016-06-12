@@ -1,8 +1,6 @@
 class WordQuestionController {
-  constructor ($log) {
+  constructor () {
     'ngInject'
-
-    $log.info(this)
   }
 }
 

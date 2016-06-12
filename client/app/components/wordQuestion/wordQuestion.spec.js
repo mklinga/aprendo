@@ -3,6 +3,8 @@ import WordQuestionController from './wordQuestion.controller'
 import WordQuestionComponent from './wordQuestion.component'
 import WordQuestionTemplate from './wordQuestion.html'
 
+import { expect } from 'chai'
+
 describe('WordQuestion', () => {
   let $rootScope, makeController
 
@@ -14,28 +16,13 @@ describe('WordQuestion', () => {
     }
   }))
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-  })
-
-  describe('Controller', () => {
-    // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController()
-      expect(controller).to.have.property('name')
-    })
-  })
-
   describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(WordQuestionTemplate).to.match(/{{\s?vm\.name\s?}}/g)
+    it('has h3 that equals word.value', () => {
+      expect(WordQuestionTemplate).to.match(/h3.*vm\.word\.value/g)
     })
   })
 
   describe('Component', () => {
-      // component/directive specs
       let component = WordQuestionComponent
 
       it('includes the intended template',() => {

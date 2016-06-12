@@ -3,34 +3,27 @@ import WordAnswerController from './wordAnswer.controller'
 import WordAnswerComponent from './wordAnswer.component'
 import WordAnswerTemplate from './wordAnswer.html'
 
+import { expect } from 'chai'
+
 describe('WordAnswer', () => {
-  let $rootScope, makeController
+  let $rootScope, $log, makeController
 
   beforeEach(window.module(WordAnswerModule.name))
-  beforeEach(inject((_$rootScope_) => {
+  beforeEach(inject((_$rootScope_, _$log_) => {
     $rootScope = _$rootScope_
+    $log = _$log_
     makeController = () => {
-      return new WordAnswerController()
+      return new WordAnswerController($log)
     }
   }))
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-  })
-
   describe('Controller', () => {
-    // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController()
-      expect(controller).to.have.property('name')
-    })
+
   })
 
   describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(WordAnswerTemplate).to.match(/{{\s?vm\.name\s?}}/g)
+    it('has an input in template [REMOVE]', () => {
+      expect(WordAnswerTemplate).to.match(/<input/g)
     })
   })
 
@@ -48,6 +41,10 @@ describe('WordAnswer', () => {
 
       it('invokes the right controller', () => {
         expect(component.controller).to.equal(WordAnswerController)
+      })
+
+      it('has a word as a binding', () => {
+      expect(component.bindings).to.have.property('word')
       })
   })
 })

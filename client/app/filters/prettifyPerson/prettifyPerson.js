@@ -1,12 +1,7 @@
 /* @flow */
 
 import angular from 'angular'
-
-const prettifyPersonFilter: () => Function = () => {
-  return function (input) {
-    return 'filtered' + input
-  }
-}
+import prettifyPersonFilter from './prettifyPerson.filter'
 
 const prettifyPersonModule = angular
   .module('prettifyPerson', [])
