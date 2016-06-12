@@ -11,6 +11,7 @@
 
 [libs]
 ./client/app/interfaces/
+./interfaces/
 
 [options]
 module.system=haste
@@ -18,7 +19,10 @@ esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 esproposal.decorators=ignore
 
-module.name_mapper='^interfaces\/\(.*\)$' -> '<PROJECT_ROOT>/client/app/types/\1'
+module.name_mapper='.*\.html$' -> 'Html'
+module.name_mapper='.*\.scss' -> 'Scss'
+module.name_mapper='^factories\/\(.*\)$' -> '<PROJECT_ROOT>/client/app/factories/\1'
+module.name_mapper='^types\/\(.*\)$' -> '<PROJECT_ROOT>/client/app/types/\1'
 
 munge_underscores=true
 

@@ -1,5 +1,14 @@
+/* @flow */
+
+import type { QuestionWordPair } from 'types/word'
+
 class TesterController {
-  constructor ($log, QuestionWordFactory) {
+
+  correctAnswers: number;
+  index: number;
+  questionnaire: Array<QuestionWordPair>;
+
+  constructor ($log: Object, QuestionWordFactory: Object) {
     'ngInject'
 
     this.questionnaire = QuestionWordFactory.getQuestionnaire(10)

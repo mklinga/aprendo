@@ -1,3 +1,5 @@
+/* @flow */
+
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import testerComponent from './tester.component'

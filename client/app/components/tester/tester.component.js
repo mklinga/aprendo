@@ -1,8 +1,12 @@
+/* @flow */
+
+import type { AngularComponent } from 'types/angular'
+
 import template from './tester.html'
 import controller from './tester.controller'
 import './tester.scss'
 
-let testerComponent = {
+const testerComponent: AngularComponent = {
   restrict: 'E',
   bindings: {},
   template,

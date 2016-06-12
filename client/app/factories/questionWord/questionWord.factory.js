@@ -1,8 +1,13 @@
 // @flow
 
-import type { QuestionWordPair, Word } from 'interfaces/word.js'
+import type { QuestionWordPair, Word } from 'types/word.js'
 
-const QuestionWordFactory = () => {
+type QuestionWordFactoryType = {
+  getQuestionnaire: (amount: number, from: string, to: string) => Array<QuestionWordPair>,
+  getQuestionWord: (from: string, to: string) => ?QuestionWordPair
+}
+
+const QuestionWordFactory: () => QuestionWordFactoryType = () => {
   'ngInject'
 
   // TODO: read from somewhere
@@ -82,8 +87,8 @@ const QuestionWordFactory = () => {
   ]
 
   return {
-    getQuestionnaire (amount: number = 10, from: string = 'en', to: string = 'es'): Array<Word> {
-      const result: Array<Word> = []
+    getQuestionnaire (amount: number = 10, from: string = 'en', to: string = 'es'): Array<QuestionWordPair> {
+      const result: Array<QuestionWordPair> = []
       for (let i = 0; i < amount; i++) {
         result.push(this.getQuestionWord(from, to))
       }

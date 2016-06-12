@@ -1,7 +1,11 @@
+/* @flow */
+
+import type { AngularComponent } from 'types/angular'
+
 import template from './home.html'
 import controller from './home.controller'
 
-let homeComponent = {
+let homeComponent: AngularComponent = {
   restrict: 'E',
   bindings: {},
   template,
