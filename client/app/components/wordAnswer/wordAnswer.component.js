@@ -9,7 +9,8 @@ import './wordAnswer.scss'
 let wordAnswerComponent: AngularComponent = {
   restrict: 'E',
   bindings: {
-    word: '<'
+    word: '<',
+    guess: '&'
   },
   template,
   controller,

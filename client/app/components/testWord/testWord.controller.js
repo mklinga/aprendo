@@ -1,8 +1,18 @@
 /* @flow */
 
+import type { Logger } from 'types/angular'
+
+let logger
+
 class TestWordController {
-  constructor () {
+
+  constructor ($log: Logger) {
     'ngInject'
+    logger = $log
+  }
+
+  guess (answer: string) {
+    logger.info('guessing ' + answer)
   }
 }
 

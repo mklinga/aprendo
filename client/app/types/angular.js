@@ -7,3 +7,8 @@ export type AngularComponent = {
   controller: Function,
   controllerAs: string
 }
+
+export type Logger = {
+  info: Function,
+  error: Function
+}
