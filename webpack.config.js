@@ -1,6 +1,6 @@
-var path    = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'sourcemap',
@@ -31,8 +31,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
-        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
+        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1
       }
     })
   ]
-};
+}

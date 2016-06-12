@@ -1,0 +1,31 @@
+[version]
+0.27.0
+
+[ignore]
+.*/generator/.*
+.*/dist/.*
+.*/node_modules/.*
+
+[include]
+./node_modules/
+
+[libs]
+./client/app/interfaces/
+
+[options]
+module.system=haste
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+esproposal.decorators=ignore
+
+module.name_mapper='^interfaces\/\(.*\)$' -> '<PROJECT_ROOT>/client/app/types/\1'
+
+munge_underscores=true
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FixMe
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(1[0-6]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*www[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(1[0-6]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*www[a-z,_]*\\)?)\\)? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy

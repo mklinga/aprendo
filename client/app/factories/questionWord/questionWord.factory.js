@@ -1,8 +1,12 @@
+// @flow
+
+import type { QuestionWordPair, Word } from 'interfaces/word.js'
+
 const QuestionWordFactory = () => {
   'ngInject'
 
   // TODO: read from somewhere
-  const WORDS = [
+  const WORDS: Array<Word> = [
     {
       id: 1001,
       type: 'verb',
@@ -78,23 +82,23 @@ const QuestionWordFactory = () => {
   ]
 
   return {
-    getQuestionnaire (amount = 10, from = 'en', to = 'es') {
-      const result = []
+    getQuestionnaire (amount: number = 10, from: string = 'en', to: string = 'es'): Array<Word> {
+      const result: Array<Word> = []
       for (let i = 0; i < amount; i++) {
         result.push(this.getQuestionWord(from, to))
       }
 
       return result
     },
-    getQuestionWord (from = 'en', to = 'es', words = WORDS) {
-      const sourcePool = words.filter(word => word.language === from)
+    getQuestionWord (from: string = 'en', to: string = 'es', words: Array<Word> = WORDS): ?QuestionWordPair {
+      const sourcePool: Array<Word> = words.filter(word => word.language === from)
 
-      const questionWord = sourcePool[Math.floor(Math.random() * sourcePool.length)]
-      const tense = 'present'
-      const index = Math.floor(Math.random() * Object.keys(questionWord.value[tense]).length)
-      const person = Object.keys(questionWord.value[tense])[index]
+      const questionWord: Word = sourcePool[Math.floor(Math.random() * sourcePool.length)]
+      const tense: string = 'present'
+      const index: number = Math.floor(Math.random() * Object.keys(questionWord.value[tense]).length)
+      const person: string = Object.keys(questionWord.value[tense])[index]
 
-      const answer = words.find(word => {
+      const answer: Word = words.find(word => {
         return ((word.language === to) && (questionWord.relations.includes(word.id)))
       })
 
