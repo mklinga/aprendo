@@ -21,6 +21,7 @@ class WordAnswerController {
     // Enter key checks for the answer
     if (event.which === 13) {
       this.guess({answer: this.answer})
+      this.answer = ''
     }
   }
 }
