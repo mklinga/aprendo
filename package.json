@@ -11,7 +11,7 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lint": "eslint client",
     "run": "gulp serve",
-    "test": "flow && karma start",
+    "test": "eslint client && flow && karma start",
     "watch": "gulp serve",
     "webpack": "gulp webpack"
   },
