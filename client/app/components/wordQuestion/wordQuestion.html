@@ -1,7 +1,6 @@
 <div class="word-question">
-  <h3>{{ vm.word.value }}</h3>
   <p>
-    <span>{{ vm.word.person | prettifyPerson }}</span>
-    <span>{{ vm.word.tense }}</span>
+    <span class="person">{{ vm.word.person | prettifyPerson }}</span>
+    <strong>{{ vm.word.value }}</strong>
   </p>
 </div>
