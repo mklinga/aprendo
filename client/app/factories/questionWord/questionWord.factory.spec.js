@@ -5,9 +5,9 @@ import { expect } from '../../../../node_modules/chai/chai'
 describe('(Factory) QuestionWordFactory', () => {
   let questionWordFactory
 
-  beforeEach(inject(_$log_) => {
+  beforeEach(inject(_$log_ => {
     questionWordFactory = new QuestionWordFactory(_$log_)
-  })
+  }))
 
   it('Should return an object', () => {
     expect(questionWordFactory).to.be.an('object')

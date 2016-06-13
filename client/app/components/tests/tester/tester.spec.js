@@ -5,7 +5,7 @@ import TesterTemplate from './tester.html'
 
 import questionWordFactory from 'factories/questionWord/questionWord.factory'
 
-import { expect } from '../../../../node_modules/chai/chai'
+import { expect } from 'chai'
 
 describe('Tester', () => {
   let makeController

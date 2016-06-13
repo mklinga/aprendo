@@ -16,11 +16,6 @@ describe('Home', () => {
   }))
 
   describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name "Home View" in template', () => {
-      expect(HomeTemplate).to.match(/Home View/g)
-    })
   })
 
   describe('Component', () => {

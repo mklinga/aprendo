@@ -1,7 +1,7 @@
 /* @flow */
 
 class <%= upCaseName %>Controller {
-  constructor() {
+  constructor () {
     
   }
 }

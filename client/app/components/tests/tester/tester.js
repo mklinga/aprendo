@@ -13,18 +13,6 @@ import questionWordFactory from 'factories/questionWord/questionWord.factory'
 
 const testerModule = angular
   .module('tester', [ uiRouter ])
-  .config(($stateProvider, $urlRouterProvider) => {
-    'ngInject'
-
-    $urlRouterProvider.otherwise('/')
-
-    $stateProvider
-      .state('tester', {
-        url: '/tester',
-        template: '<tester></tester>'
-      })
-  })
-
   .factory('QuestionWordFactory', questionWordFactory)
   .component('successViewer', successViewerComponent)
   .component('testWord', testWordComponent)
