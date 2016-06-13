@@ -5,18 +5,48 @@ import TestWordTemplate from './testWord.html'
 
 import { expect } from 'chai'
 
-describe('TestWord', () => {
+describe.only('TestWord', () => {
   let makeController
 
   beforeEach(window.module(TestWordModule.name))
   beforeEach(inject((_$rootScope_, _$log_) => {
     makeController = () => {
-      return new TestWordController(_$log_)
+      const controller = new TestWordController(_$log_)
+      controller.respond = sinon.spy()
+      return controller
     }
   }))
 
   describe('Controller', () => {
+    let controller
+    beforeEach(() => {
+      controller = makeController()
+      controller.word = {
+        answer: { id : 1001, language : "es", person : "3rd", tense : "present", value : "hace" },
+        question: { id : 2001, language : "en", person : "3rd", tense : "present", value : "make" }
+      }
+    })
 
+    describe('(Method) guess()', () => {
+
+      it('should have a guess() function', () => {
+        expect(controller.guess).to.be.a('Function')
+      })
+
+      it('should call respond when guessing for an answer', () => {
+        expect(controller.respond.callCount).to.equal(0)
+        controller.guess('word')
+        expect(controller.respond.callCount).to.equal(1)
+      })
+
+      it('should set the value of respond() based on whether the guess was right', () => {
+        controller.guess('wrong answer')
+        expect(controller.respond.getCall(0).calledWith({ isCorrect: false })).to.equal(true)
+        controller.guess('hace')
+        expect(controller.respond.getCall(1).calledWith({ isCorrect: true })).to.equal(true)
+      })
+
+    })
   })
 
   describe('Template', () => {

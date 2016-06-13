@@ -2,17 +2,19 @@
 
 import type { Logger } from 'types/angular'
 
-let logger
-
 class TestWordController {
+
+  logger: Logger;
 
   constructor ($log: Logger) {
     'ngInject'
-    logger = $log
+    this.logger = $log
+    this.logger.info(this.word)
   }
 
   guess (answer: string) {
-    logger.info('guessing ' + answer)
+    this.logger.info('guessing ' + answer + ' (correct: ' + this.word.answer.value + ')')
+    this.respond({ isCorrect: (answer === this.word.answer.value) })
   }
 }
 

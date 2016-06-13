@@ -9,7 +9,8 @@ import './testWord.scss'
 let testWordComponent: AngularComponent = {
   restrict: 'E',
   bindings: {
-    word: '<'
+    word: '<',
+    respond: '&'
   },
   template,
   controller,
