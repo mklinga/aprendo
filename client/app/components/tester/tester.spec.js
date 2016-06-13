@@ -13,7 +13,7 @@ describe('Tester', () => {
   beforeEach(window.module(TesterModule.name))
   beforeEach(inject((_$rootScope_, _$log_) => {
     makeController = () => {
-      return new TesterController(_$log_, new questionWordFactory())
+      return new TesterController(_$log_, new questionWordFactory(_$log_))
     }
   }))
 

@@ -9,7 +9,10 @@ export type AngularComponent = {
 }
 
 export type Logger = {
-  info: Function,
   debug: Function,
-  error: Function
+  error: Function,
+  info: Function,
+  log: Function,
+  warn: Function
 }
+

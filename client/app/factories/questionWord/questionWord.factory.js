@@ -1,13 +1,14 @@
 // @flow
 
-import type { QuestionWordPair, Word } from 'types/word.js'
+import type { QuestionWord, QuestionWordPair, Word } from 'types/word.js'
+import type { Logger } from 'types/angular'
 
 type QuestionWordFactoryType = {
   getQuestionnaire: (amount: number, from: string, to: string) => Array<QuestionWordPair>,
   getQuestionWord: (from: string, to: string) => ?QuestionWordPair
 }
 
-const QuestionWordFactory: () => QuestionWordFactoryType = () => {
+const QuestionWordFactory: ($log: Logger) => QuestionWordFactoryType = ($log) => {
   'ngInject'
 
   // TODO: read from somewhere
@@ -87,10 +88,20 @@ const QuestionWordFactory: () => QuestionWordFactoryType = () => {
   ]
 
   return {
+    getWordIdentifier (word: QuestionWord): string {
+      return word.id + word.person + word.tense
+    },
     getQuestionnaire (amount: number = 10, from: string = 'en', to: string = 'es'): Array<QuestionWordPair> {
       const result: Array<QuestionWordPair> = []
-      for (let i = 0; i < amount; i++) {
-        result.push(this.getQuestionWord(from, to))
+      while (result.length < amount) {
+        const newPair = this.getQuestionWord(from, to)
+
+        // We don't want to show the user same word/time/person twice during one run
+        if (result.find(pair => this.getWordIdentifier(pair.question) === this.getWordIdentifier(newPair.question))) {
+          $log.debug('found a duplicate')
+        } else {
+          result.push(newPair)
+        }
       }
 
       return result
