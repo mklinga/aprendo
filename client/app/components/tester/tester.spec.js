@@ -7,7 +7,7 @@ import questionWordFactory from 'factories/questionWord/questionWord.factory'
 
 import { expect } from '../../../../node_modules/chai/chai'
 
-describe('Tester', () => {
+describe.only('Tester', () => {
   let makeController
 
   beforeEach(window.module(TesterModule.name))
@@ -20,37 +20,75 @@ describe('Tester', () => {
   describe('Controller', () => {
     let controller
 
-    beforeEach(() => {
-      controller = makeController()
-    })
+    describe('props', () => {
+      beforeEach(() => {
+        controller = makeController()
+      })
 
-    describe('questionnaire', () => {
-      it('exists', () => {
+      it('has an array questionnaire', () => {
         expect(controller).to.have.property('questionnaire')
+        expect(controller.questionnaire).to.be.an('array')
       })
 
-      it('has 10 items', () => {
-        expect(controller.questionnaire).to.have.length(10)
-      })
-    })
-
-    describe('index', () => {
-      it('exists', () => {
+      it('has index', () => {
         expect(controller).to.have.property('index')
       })
-    })
 
-    describe('correctAnswers', () => {
-      it('exists', () => {
+      it('has correctAnswers', () => {
         expect(controller).to.have.property('correctAnswers')
       })
     })
 
+    describe('(Method) getResponse', () => {
+      beforeEach(() => {
+        controller = makeController()
+      })
+
+      it('Should be a function', () => {
+        expect(controller.getResponse).to.be.a('function')
+      })
+
+      it('Should increment correctAnswers if isCorrect is true', () => {
+        expect(controller.correctAnswers).to.equal(0)
+        controller.getResponse(true)
+        expect(controller.correctAnswers).to.equal(1)
+      })
+
+      it('Should NOT increment correctAnswers if isCorrect is false', () => {
+        expect(controller.correctAnswers).to.equal(0)
+        controller.getResponse(false)
+        expect(controller.correctAnswers).to.equal(0)
+      })
+
+      it('Should increase index until the questionnaire.length is reached', () => {
+        expect(controller.index).to.equal(0)
+        for (let i = 0; i < (controller.questionnaire.length + 10); i++) {
+          controller.getResponse(true)
+          expect(controller.index).to.equal(Math.min(i + 1, controller.questionnaire.length))
+        }
+      })
+
+      it('Should push wrong answers again into the questionnaire', () => {
+        expect(controller.questionnaire.length).to.equal(10)
+        expect(controller.total).to.equal(10)
+
+        for (let i = 0; i < 5; i++) { controller.getResponse(false) }
+
+        expect(controller.questionnaire.length).to.equal(15)
+        expect(controller.total).to.equal(15)
+
+        // right answers won't effect the length
+        for (let i = 0; i < 5; i++) { controller.getResponse(true) }
+
+        expect(controller.questionnaire.length).to.equal(15)
+        expect(controller.total).to.equal(15)
+      })
+    })
   })
 
   describe('Template', () => {
-    it('has name "Tester" in template', () => {
-      expect(TesterTemplate).to.match(/Test/g)
+    it('has classname "tester" in template', () => {
+      expect(TesterTemplate).to.match(/class="tester"/g)
     })
   })
 

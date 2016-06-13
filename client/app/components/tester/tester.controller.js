@@ -10,19 +10,17 @@ class TesterController {
   index: number;
   logger: Logger;
   questionnaire: Array<QuestionWordPair>;
-  missed: Array<number>;
 
   constructor ($log: Object, QuestionWordFactory: Object) {
     'ngInject'
 
     this.logger = $log
 
-    this.questionnaire = QuestionWordFactory.getQuestionnaire(4)
+    this.questionnaire = QuestionWordFactory.getQuestionnaire(10)
 
     this.index = 0
     this.correctAnswers = 0
-    this.total = 4
-    this.missed = []
+    this.total = 10
   }
 
   getResponse (isCorrect: boolean) {

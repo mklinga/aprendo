@@ -16,16 +16,9 @@ describe('SuccessViewer', () => {
     }
   }))
 
-  describe('Controller', () => {
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController()
-      expect(controller).to.have.property('name')
-    })
-  })
-
   describe('Template', () => {
-    it('has name in template [REMOVE]', () => {
-      expect(SuccessViewerTemplate).to.match(/{{\s?vm\.name\s?}}/g)
+    it('has amount of correct answers in the template', () => {
+      expect(SuccessViewerTemplate).to.match(/{{\s?vm\.correctAnswers\s?}}/g)
     })
   })
 
