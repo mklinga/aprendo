@@ -1,7 +1,11 @@
 <div class="successViewer">
   <span>{{ vm.correctAnswers }}</span>
   <span>{{ ' / ' + vm.total }}</span>
-  <div>
-    <span>{{ vm.lastAnswer | json }}</span>
+  <div ng-if="vm.lastAnswer.success" class="last-answer-success">
+    <span>Correct!</span>
+  </div>
+  <div ng-if="vm.lastAnswer.success === false" class="last-answer-fail">
+    <span>That's not right. The correct answer is </span>
+    <strong>{{ vm.lastAnswer.value }}</strong>
   </div>
 </div>
