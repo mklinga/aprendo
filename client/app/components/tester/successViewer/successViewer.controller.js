@@ -1,7 +1,5 @@
-class SuccessViewerController {
-  constructor() {
-    this.name = 'successViewer'
-  }
-}
+/* @flow */
+
+class SuccessViewerController { }
 
 export default SuccessViewerController
