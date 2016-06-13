@@ -2,7 +2,7 @@
 
 import type { Logger } from 'types/angular'
 
-class <%= upCaseName %>Controller {
+class TestSelectorController {
 
   logger: Logger;
 
@@ -13,4 +13,4 @@ class <%= upCaseName %>Controller {
   }
 }
 
-export default <%= upCaseName %>Controller
+export default TestSelectorController

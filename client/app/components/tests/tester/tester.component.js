@@ -8,7 +8,10 @@ import './tester.scss'
 
 const testerComponent: AngularComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    from: '<',
+    to: '<'
+  },
   template,
   controller,
   controllerAs: 'vm'

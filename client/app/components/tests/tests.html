@@ -1,4 +1,12 @@
 <navbar></navbar>
 <div class="tests">
-  <tester></tester>
+  <tester
+    ng-if="vm.isTesting"
+    from="vm.from"
+    to="vm.to">
+  </tester>
+  <test-selector
+    ng-if="!vm.isTesting"
+    launch-test="vm.launchTest(options)">
+  </test-selector>
 </div>

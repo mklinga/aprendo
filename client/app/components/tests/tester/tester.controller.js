@@ -6,18 +6,21 @@ import type { LastAnswer, QuestionWordPair } from 'types/word'
 class TesterController {
 
   correctAnswers: number;
-  total: number;
+  from: string;
   index: number;
   lastAnswer: LastAnswer;
   logger: Logger;
   questionnaire: Array<QuestionWordPair>;
+  to: string;
+  total: number;
 
   constructor ($log: Object, QuestionWordFactory: Object) {
     'ngInject'
 
     this.logger = $log
 
-    this.questionnaire = QuestionWordFactory.getQuestionnaire(10)
+    this.logger.debug(this.from, this.to)
+    this.questionnaire = QuestionWordFactory.getQuestionnaire(10, this.from, this.to)
 
     this.index = 0
     this.correctAnswers = 0
