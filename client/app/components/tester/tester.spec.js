@@ -64,7 +64,6 @@ describe('Tester', () => {
         expect(controller.index).to.equal(0)
         for (let i = 1; i < (controller.questionnaire.length + 10); i++) {
           controller.getResponse(true)
-          console.log(controller.index)
           expect(controller.index).to.equal(Math.min(i, (controller.questionnaire.length - 1)))
         }
       })
