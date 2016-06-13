@@ -35,3 +35,8 @@ export type QuestionWordPair = {
   question: QuestionWord,
   answer: QuestionWord
 }
+
+export type LastAnswer = {
+  success: boolean,
+  value: string
+}

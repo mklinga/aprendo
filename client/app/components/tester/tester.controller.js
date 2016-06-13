@@ -1,13 +1,14 @@
 /* @flow */
 
 import type { Logger } from 'types/angular'
-import type { QuestionWordPair } from 'types/word'
+import type { LastAnswer, QuestionWordPair } from 'types/word'
 
 class TesterController {
 
   correctAnswers: number;
   total: number;
   index: number;
+  lastAnswer: LastAnswer;
   logger: Logger;
   questionnaire: Array<QuestionWordPair>;
 
@@ -24,6 +25,11 @@ class TesterController {
   }
 
   getResponse (isCorrect: boolean) {
+    this.lastAnswer = {
+      success: isCorrect,
+      value: this.questionnaire[this.index].answer.value
+    }
+
     if (isCorrect) {
       this.correctAnswers++
     } else {
@@ -31,10 +37,10 @@ class TesterController {
       this.total++
     }
 
-    if (this.index < this.questionnaire.length) {
+    if (this.index < (this.questionnaire.length - 1)) {
       this.index++
     } else {
-      // show results etc.
+      alert('The end!')
     }
   }
 }

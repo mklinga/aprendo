@@ -7,7 +7,7 @@ import questionWordFactory from 'factories/questionWord/questionWord.factory'
 
 import { expect } from '../../../../node_modules/chai/chai'
 
-describe.only('Tester', () => {
+describe('Tester', () => {
   let makeController
 
   beforeEach(window.module(TesterModule.name))
@@ -62,9 +62,10 @@ describe.only('Tester', () => {
 
       it('Should increase index until the questionnaire.length is reached', () => {
         expect(controller.index).to.equal(0)
-        for (let i = 0; i < (controller.questionnaire.length + 10); i++) {
+        for (let i = 1; i < (controller.questionnaire.length + 10); i++) {
           controller.getResponse(true)
-          expect(controller.index).to.equal(Math.min(i + 1, controller.questionnaire.length))
+          console.log(controller.index)
+          expect(controller.index).to.equal(Math.min(i, (controller.questionnaire.length - 1)))
         }
       })
 

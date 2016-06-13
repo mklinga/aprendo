@@ -1,4 +1,3 @@
-import SuccessViewerModule from './successViewer'
 import SuccessViewerController from './successViewer.controller'
 import SuccessViewerComponent from './successViewer.component'
 import SuccessViewerTemplate from './successViewer.html'
@@ -8,7 +7,6 @@ import { expect } from 'chai'
 describe('SuccessViewer', () => {
   let $rootScope, makeController
 
-  beforeEach(window.module(SuccessViewerModule.name))
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_
     makeController = () => {

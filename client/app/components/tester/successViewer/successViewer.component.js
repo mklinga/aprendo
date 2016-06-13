@@ -11,7 +11,7 @@ const successViewerComponent: AngularComponent = {
   bindings: {
     correctAnswers: '<',
     total: '<',
-    questions: '<'
+    lastAnswer: '<'
   },
   template,
   controller,
