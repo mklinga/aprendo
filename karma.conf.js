@@ -6,7 +6,7 @@ module.exports = function (config) {
     basePath: '',
 
     // frameworks to use
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'sinon'],
 
     // list of files/patterns to load in the browser
     files: [
@@ -20,6 +20,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-phantomjs-launcher'),
       require('karma-mocha'),
+      require('karma-sinon'),
       require('karma-mocha-reporter'),
       require('karma-sourcemap-loader'),
       require('karma-webpack')
