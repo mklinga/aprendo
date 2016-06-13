@@ -1,15 +1,18 @@
 /* @flow */
 
 import type { Logger } from 'types/angular'
+import type { QuestionWordPair } from 'types/word'
 
 class TestWordController {
 
   logger: Logger;
+  word: QuestionWordPair;
+  respond: ((params: { isCorrect: boolean }) => null);
 
   constructor ($log: Logger) {
     'ngInject'
     this.logger = $log
-    this.logger.info(this.word)
+    this.logger.debug(this.word)
   }
 
   guess (answer: string) {

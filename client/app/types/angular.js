@@ -10,5 +10,6 @@ export type AngularComponent = {
 
 export type Logger = {
   info: Function,
+  debug: Function,
   error: Function
 }

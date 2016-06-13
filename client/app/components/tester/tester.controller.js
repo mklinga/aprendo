@@ -21,7 +21,7 @@ class TesterController {
     this.correctAnswers = 0
   }
 
-  getResponse (isCorrect) {
+  getResponse (isCorrect: boolean) {
     this.logger.info(isCorrect)
     if (this.index !== this.questionnaire.length) {
       this.index++
