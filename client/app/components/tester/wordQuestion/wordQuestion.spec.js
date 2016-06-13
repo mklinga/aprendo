@@ -1,4 +1,3 @@
-import WordQuestionModule from './wordQuestion'
 import WordQuestionController from './wordQuestion.controller'
 import WordQuestionComponent from './wordQuestion.component'
 import WordQuestionTemplate from './wordQuestion.html'
@@ -8,7 +7,6 @@ import { expect } from 'chai'
 describe('WordQuestion', () => {
   let $rootScope, makeController
 
-  beforeEach(window.module(WordQuestionModule.name))
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_
     makeController = () => {
@@ -17,8 +15,8 @@ describe('WordQuestion', () => {
   }))
 
   describe('Template', () => {
-    it('has h3 that equals word.value', () => {
-      expect(WordQuestionTemplate).to.match(/h3.*vm\.word\.value/g)
+    it('has <strong> that equals word.value', () => {
+      expect(WordQuestionTemplate).to.match(/strong.*vm\.word\.value/g)
     })
   })
 

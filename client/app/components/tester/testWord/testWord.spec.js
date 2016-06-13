@@ -1,14 +1,12 @@
-import TestWordModule from './testWord'
 import TestWordController from './testWord.controller'
 import TestWordComponent from './testWord.component'
 import TestWordTemplate from './testWord.html'
 
 import { expect } from 'chai'
 
-describe.only('TestWord', () => {
+describe('TestWord', () => {
   let makeController
 
-  beforeEach(window.module(TestWordModule.name))
   beforeEach(inject((_$rootScope_, _$log_) => {
     makeController = () => {
       const controller = new TestWordController(_$log_)

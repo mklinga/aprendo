@@ -1,4 +1,3 @@
-import WordAnswerModule from './wordAnswer'
 import WordAnswerController from './wordAnswer.controller'
 import WordAnswerComponent from './wordAnswer.component'
 import WordAnswerTemplate from './wordAnswer.html'
@@ -8,7 +7,6 @@ import { expect } from 'chai'
 describe('WordAnswer', () => {
   let $rootScope, $log, makeController
 
-  beforeEach(window.module(WordAnswerModule.name))
   beforeEach(inject((_$rootScope_, _$log_) => {
     $rootScope = _$rootScope_
     $log = _$log_
