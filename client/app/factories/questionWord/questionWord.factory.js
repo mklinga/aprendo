@@ -1,14 +1,17 @@
 // @flow
 
 import type { QuestionWord, QuestionWordPair, Word } from 'types/word.js'
+import type { LanguagesConstant } from 'types/constants.js'
 import type { Logger } from 'types/angular'
 
-type QuestionWordFactoryType = {
+type QuestionWordFactoryAnswerType = {
   getQuestionnaire: (amount: number, from: string, to: string) => Array<QuestionWordPair>,
   getQuestionWord: (from: string, to: string) => ?QuestionWordPair
 }
 
-const QuestionWordFactory: ($log: Logger) => QuestionWordFactoryType = ($log) => {
+type QuestionWordFactoryType = ($log: Logger, LANGUAGES: LanguagesConstant) => QuestionWordFactoryAnswerType
+
+const QuestionWordFactory: QuestionWordFactoryType = ($log, LANGUAGES) => {
   'ngInject'
 
   // TODO: read from somewhere
@@ -91,8 +94,9 @@ const QuestionWordFactory: ($log: Logger) => QuestionWordFactoryType = ($log) =>
     getWordIdentifier (word: QuestionWord): string {
       return word.id + word.person + word.tense
     },
-    getQuestionnaire (amount: number = 10, from: string = 'en', to: string = 'es'): Array<QuestionWordPair> {
+    getQuestionnaire (amount: number = 10, from: ?string, to: ?string): Array<QuestionWordPair> {
       const result: Array<QuestionWordPair> = []
+
       while (result.length < amount) {
         const newPair = this.getQuestionWord(from, to)
 
@@ -106,7 +110,25 @@ const QuestionWordFactory: ($log: Logger) => QuestionWordFactoryType = ($log) =>
 
       return result
     },
-    getQuestionWord (from: string = 'en', to: string = 'es', words: Array<Word> = WORDS): ?QuestionWordPair {
+    getQuestionWord (from: ?string, to: ?string, words: Array<Word> = WORDS): ?QuestionWordPair {
+      function randomLanguageValue (exclude: Array<string> = []): string {
+        const languageValues = Object.keys(LANGUAGES)
+        let attempt
+        let tries: number = 0
+
+        do {
+          attempt = languageValues[Math.floor(Math.random() * languageValues.length)]
+          if (tries++ > 100) {
+            throw new Error('Could not find a proper language')
+          }
+        } while (exclude.length && exclude.includes(attempt))
+
+        return attempt
+      }
+
+      from = from || randomLanguageValue()
+      to = to || randomLanguageValue([from])
+
       const sourcePool: Array<Word> = words.filter(word => word.language === from)
 
       const questionWord: Word = sourcePool[Math.floor(Math.random() * sourcePool.length)]

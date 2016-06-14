@@ -1,12 +1,14 @@
 import QuestionWordFactory from 'factories/questionWord/questionWord.factory'
+import constants from 'constants.js'
 
 import { expect } from '../../../../node_modules/chai/chai'
 
 describe('(Factory) QuestionWordFactory', () => {
   let questionWordFactory
 
-  beforeEach(inject(_$log_ => {
-    questionWordFactory = new QuestionWordFactory(_$log_)
+  beforeEach(window.module(constants.name))
+  beforeEach(inject((_$log_, LANGUAGES)=> {
+    questionWordFactory = new QuestionWordFactory(_$log_, LANGUAGES)
   }))
 
   it('Should return an object', () => {

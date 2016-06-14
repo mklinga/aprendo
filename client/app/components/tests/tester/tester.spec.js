@@ -4,6 +4,7 @@ import TesterComponent from './tester.component'
 import TesterTemplate from './tester.html'
 
 import questionWordFactory from 'factories/questionWord/questionWord.factory'
+import constants from 'constants.js'
 
 import { expect } from 'chai'
 
@@ -13,9 +14,10 @@ describe('Tester', () => {
   const TOTAL_ANSWERS = 10
 
   beforeEach(window.module(TesterModule.name))
-  beforeEach(inject((_$rootScope_, _$log_) => {
+  beforeEach(window.module(constants.name))
+  beforeEach(inject((_$rootScope_, _$log_, LANGUAGES) => {
     makeController = () => {
-      const controller = new TesterController(_$log_, new questionWordFactory(_$log_))
+      const controller = new TesterController(_$log_, new questionWordFactory(_$log_, LANGUAGES))
       controller.finishTest = sinon.spy()
       return controller
     }

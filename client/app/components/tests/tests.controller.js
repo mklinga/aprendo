@@ -22,8 +22,6 @@ class TestsController {
     'ngInject'
 
     this.logger = $log
-    this.from = 'en'
-    this.to = 'es'
 
     this.isTesting = false
   }

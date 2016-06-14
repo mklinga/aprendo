@@ -4,12 +4,14 @@ import Common from './common/common'
 import Filters from './filters/filters'
 import Components from './components/components'
 import AppComponent from './app.component'
+import Constants from './constants'
 import 'normalize.css'
 
 angular.module('app', [
   uiRouter,
   Common.name,
   Components.name,
+  Constants.name,
   Filters.name
 ])
   .config(($locationProvider) => {
