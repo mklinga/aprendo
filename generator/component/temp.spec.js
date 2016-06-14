@@ -16,20 +16,20 @@ describe('<%= upCaseName %>', () => {
     }
   }))
 
-  describe('Controller', () => {
+  describe('(Controller) <%= upCaseName %>Controller', () => {
     it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
       let controller = makeController()
       expect(controller).to.have.property('name')
     })
   })
 
-  describe('Template', () => {
+  describe('(Template) <%= upCaseName %>Template', () => {
     it('has name in template [REMOVE]', () => {
       expect(<%= upCaseName %>Template).to.match(/{{\s?vm\.name\s?}}/g)
     })
   })
 
-  describe('Component', () => {
+  describe('(Component) <%= upCaseName %>Template', () => {
       let component = <%= upCaseName %>Component
 
       it('includes the intended template',() => {

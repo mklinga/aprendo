@@ -16,14 +16,14 @@ describe('Tests', () => {
     }
   }))
 
-  describe('Controller', () => {
+  describe('(Controller) TestsController', () => {
     it('has a property isTesting', () => { // erase if removing this.name from the controller
       let controller = makeController()
       expect(controller).to.have.property('isTesting')
     })
   })
 
-  describe('Component', () => {
+  describe('(Component) TestsComponent', () => {
       let component = TestsComponent
 
       it('includes the intended template',() => {

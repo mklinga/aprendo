@@ -4,7 +4,7 @@ import WordAnswerTemplate from './wordAnswer.html'
 
 import { expect } from 'chai'
 
-describe('WordAnswer', () => {
+describe('(Component) WordAnswer', () => {
   let $rootScope, $log, makeController
 
   beforeEach(inject((_$rootScope_, _$log_) => {
@@ -15,7 +15,7 @@ describe('WordAnswer', () => {
     }
   }))
 
-  describe('Controller', () => {
+  describe('(Controller) WordAnswerController', () => {
     let controller
     
     beforeEach(() => {
@@ -49,13 +49,13 @@ describe('WordAnswer', () => {
     })
   })
 
-  describe('Template', () => {
-    it('has an input in template [REMOVE]', () => {
+  describe('(Template) WordAnswerTemplate', () => {
+    it('has an input in template', () => {
       expect(WordAnswerTemplate).to.match(/<input/g)
     })
   })
 
-  describe('Component', () => {
+  describe('(Component) WordAnswerComponent', () => {
       // component/directive specs
       let component = WordAnswerComponent
 
