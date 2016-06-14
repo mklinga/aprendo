@@ -10,7 +10,8 @@ const testerComponent: AngularComponent = {
   restrict: 'E',
   bindings: {
     from: '<',
-    to: '<'
+    to: '<',
+    finishTest: '&'
   },
   template,
   controller,

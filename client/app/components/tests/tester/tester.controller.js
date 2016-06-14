@@ -6,6 +6,7 @@ import type { LastAnswer, QuestionWordPair } from 'types/word'
 class TesterController {
 
   correctAnswers: number;
+  finishTest: (params: { options: { result: string } }) => null;
   from: string;
   index: number;
   lastAnswer: LastAnswer;
@@ -43,7 +44,9 @@ class TesterController {
     if (this.index < (this.questionnaire.length - 1)) {
       this.index++
     } else {
-      alert('The end!')
+      const result = (100 * (this.correctAnswers / this.total)) + '%'
+      this.logger.debug('result: ' + result)
+      this.finishTest({ options: { result } })
     }
   }
 }

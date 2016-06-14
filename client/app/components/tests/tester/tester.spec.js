@@ -10,10 +10,14 @@ import { expect } from 'chai'
 describe('Tester', () => {
   let makeController
 
+  const TOTAL_ANSWERS = 10
+
   beforeEach(window.module(TesterModule.name))
   beforeEach(inject((_$rootScope_, _$log_) => {
     makeController = () => {
-      return new TesterController(_$log_, new questionWordFactory(_$log_))
+      const controller = new TesterController(_$log_, new questionWordFactory(_$log_))
+      controller.finishTest = sinon.spy()
+      return controller
     }
   }))
 
@@ -69,19 +73,35 @@ describe('Tester', () => {
       })
 
       it('Should push wrong answers again into the questionnaire', () => {
-        expect(controller.questionnaire.length).to.equal(10)
-        expect(controller.total).to.equal(10)
+        expect(controller.questionnaire.length).to.equal(TOTAL_ANSWERS)
+        expect(controller.total).to.equal(TOTAL_ANSWERS)
 
         for (let i = 0; i < 5; i++) { controller.getResponse(false) }
 
-        expect(controller.questionnaire.length).to.equal(15)
-        expect(controller.total).to.equal(15)
+        expect(controller.questionnaire.length).to.equal(TOTAL_ANSWERS + 5)
+        expect(controller.total).to.equal(TOTAL_ANSWERS + 5)
 
         // right answers won't effect the length
         for (let i = 0; i < 5; i++) { controller.getResponse(true) }
 
-        expect(controller.questionnaire.length).to.equal(15)
-        expect(controller.total).to.equal(15)
+        expect(controller.questionnaire.length).to.equal(TOTAL_ANSWERS + 5)
+        expect(controller.total).to.equal(TOTAL_ANSWERS + 5)
+      })
+
+      it('Should call finishTest() after TOTAL_ANSWERS right answers', () => {
+        expect(controller.finishTest.callCount).to.equal(0)
+        for (let i = 1; i < (TOTAL_ANSWERS + 1); i++) {
+          controller.getResponse(true)
+        }
+        expect(controller.finishTest.callCount).to.equal(1)
+        expect(controller.finishTest.calledWith({ options: { result: '100%' } })).to.equal(true)
+      })
+
+      it('Should calculate the result based on the correct answers', () => {
+        for (let i = 1; i < (TOTAL_ANSWERS*2 + 1); i++) {
+          controller.getResponse(i % 2 === 0)
+        }
+        expect(controller.finishTest.calledWith({ options: { result: '50%' } })).to.equal(true)
       })
     })
   })

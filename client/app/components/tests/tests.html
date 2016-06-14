@@ -3,7 +3,8 @@
   <tester
     ng-if="vm.isTesting"
     from="vm.from"
-    to="vm.to">
+    to="vm.to"
+    finish-test="vm.finishTest(options)">
   </tester>
   <test-selector
     ng-if="!vm.isTesting"

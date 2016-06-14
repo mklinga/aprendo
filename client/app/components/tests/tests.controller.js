@@ -2,6 +2,15 @@
 
 import type { Logger } from 'types/angular'
 
+type LaunchOptions = {
+  from: string,
+  to: string
+}
+
+type FinishOptions = {
+  result: string
+}
+
 class TestsController {
 
   isTesting: boolean;
@@ -9,7 +18,7 @@ class TestsController {
   from: string;
   to: string;
 
-  constructor ($log) {
+  constructor ($log: Logger) {
     'ngInject'
 
     this.logger = $log
@@ -19,11 +28,16 @@ class TestsController {
     this.isTesting = false
   }
 
-  launchTest (options) {
+  launchTest (options: LaunchOptions) {
     this.from = options.from || this.from
     this.to = options.to || this.to
     this.logger.debug('Launching test', options)
     this.isTesting = true
+  }
+
+  finishTest (options: FinishOptions) {
+    this.logger.debug('Finishing test', options.result)
+    this.isTesting = false
   }
 }
 

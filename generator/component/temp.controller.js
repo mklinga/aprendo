@@ -6,7 +6,7 @@ class <%= upCaseName %>Controller {
 
   logger: Logger;
 
-  constructor ($log) {
+  constructor ($log: Logger) {
     'ngInject'
 
     this.logger = $log

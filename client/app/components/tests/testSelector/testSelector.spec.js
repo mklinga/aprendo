@@ -16,19 +16,6 @@ describe('TestSelector', () => {
     }
   }))
 
-  describe('Controller', () => {
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController()
-      expect(controller).to.have.property('name')
-    })
-  })
-
-  describe('Template', () => {
-    it('has name in template [REMOVE]', () => {
-      expect(TestSelectorTemplate).to.match(/{{\s?vm\.name\s?}}/g)
-    })
-  })
-
   describe('Component', () => {
       let component = TestSelectorComponent
 
