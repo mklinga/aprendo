@@ -10,30 +10,29 @@ export type WordConjugationValue = {
 }
 
 export type WordValue = {
-  infinitive: string,
-  present: WordConjugationValue
-}
-
-export type Word = {
   id: number,
   irregular: boolean,
-  language: string,
-  relations: Array<number>,
-  type: string,
-  value: WordValue
+  infinitive: string,
+  language_id: number,
+  type_id: number
 }
 
-export type QuestionWord = {
-    person: string,
-    tense: string,
-    id: number,
-    language: string,
-    value: string
+export type WordConjugation = {
+  id: number,
+  word_id: number,
+  person_conjugation_id: number,
+  time_conjugation_id: number,
+  value: string
+}
+
+export type QuestionWordV1 = {
+  word: WordValue,
+  conjugation: WordConjugation
 }
 
 export type QuestionWordPair = {
-  question: QuestionWord,
-  answer: QuestionWord
+  question: QuestionWordV1,
+  answer: QuestionWordV1
 }
 
 export type LastAnswer = {

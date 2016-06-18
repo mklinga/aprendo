@@ -16,8 +16,8 @@ class TestWordController {
   }
 
   guess (answer: string) {
-    this.logger.info('guessing ' + answer + ' (correct: ' + this.word.answer.value + ')')
-    this.respond({ isCorrect: (answer === this.word.answer.value) })
+    this.logger.info('guessing ' + answer + ' (correct: ' + this.word.answer.conjugation.value + ')')
+    this.respond({ isCorrect: (answer === this.word.answer.conjugation.value) })
   }
 }
 

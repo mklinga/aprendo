@@ -21,8 +21,10 @@
     "angular": "^1.5.0",
     "angular-ui-router": "^0.2.15",
     "babel-eslint": "^6.0.4",
+    "lodash": "^4.13.1",
     "normalize.css": "^3.0.3",
-    "phantomjs-prebuilt": "^2.1.7"
+    "phantomjs-prebuilt": "^2.1.7",
+    "restangular": "^1.5.2"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",

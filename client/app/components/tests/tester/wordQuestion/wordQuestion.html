@@ -1,6 +1,8 @@
 <div class="word-question">
   <p>
-    <span class="person">{{ vm.word.person | prettifyPerson:vm.word.language }}</span>
-    <strong>{{ vm.word.value }}</strong>
+    <span class="person">{{ vm.word.conjugation.person_conjugation_id | prettifyPerson:vm.word.word.language_id }}</span>
+    <strong>{{ vm.word.conjugation.value }}</strong>
+    <br>
+    <span class="hint">{{ vm.word.word.infinitive }}</span>
   </p>
 </div>

@@ -15,13 +15,19 @@ class TesterController {
   to: string;
   total: number;
 
-  constructor ($log: Object, QuestionWordFactory: Object) {
+  constructor ($log: Object, $scope: Object, QuestionWordFactory: Object) {
     'ngInject'
 
     this.logger = $log
 
     this.logger.debug(this.from, this.to)
-    this.questionnaire = QuestionWordFactory.getQuestionnaire(10, this.from, this.to)
+    this.questionnaire = []
+    QuestionWordFactory
+      .getQuestionnaire(10)
+      .then(data => {
+        $scope.vm.questionnaire = data
+        $scope.$apply()
+      })
 
     this.index = 0
     this.correctAnswers = 0
@@ -31,7 +37,7 @@ class TesterController {
   getResponse (isCorrect: boolean) {
     this.lastAnswer = {
       success: isCorrect,
-      value: this.questionnaire[this.index].answer.value
+      value: this.questionnaire[this.index].answer.conjugation.value
     }
 
     if (isCorrect) {

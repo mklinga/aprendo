@@ -1,26 +1,28 @@
 /* @flow */
 
 const PRETTIFIED = {
-  'en': {
-    '1st': 'I',
-    '2nd': 'you',
-    '3rd': 'he/she/it',
-    '1stplural': 'we',
-    '2ndplural': 'you (plural)',
-    '3rdplural': 'they'
+  /* Spanish */
+  1: {
+    1: 'yo',
+    2: 'tú',
+    3: 'él/ella',
+    4: 'nosotros',
+    5: 'vosotros',
+    6: 'ellos'
   },
-  'es': {
-    '1st': 'yo',
-    '2nd': 'tú',
-    '3rd': 'él/ella',
-    '1stplural': 'nosotros',
-    '2ndplural': 'vosotros',
-    '3rdplural': 'ellos'
+  /* English */
+  2: {
+    1: 'I',
+    2: 'you',
+    3: 'he/she/it',
+    4: 'we',
+    5: 'you (plural)',
+    6: 'they'
   }
 }
 
 const prettifyPersonFilter: () => Function = () => {
-  return function (input, language = 'en') {
+  return function (input, language = 1) {
     return PRETTIFIED[language][input]
   }
 }
