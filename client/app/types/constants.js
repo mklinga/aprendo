@@ -10,3 +10,11 @@ export type LanguagesConstant = {
     title: string
   }
 }
+
+type QuestionnaireConfig = {
+  amountOfWords: number
+}
+
+export type ConfigObject = {
+  questionnaire: QuestionnaireConfig
+}

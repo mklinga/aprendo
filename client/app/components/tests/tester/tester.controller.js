@@ -2,6 +2,7 @@
 
 import type { Logger } from 'types/angular'
 import type { LastAnswer, QuestionWordPair } from 'types/word'
+import type { ConfigObject } from 'types/constants'
 
 class TesterController {
 
@@ -15,7 +16,7 @@ class TesterController {
   to: string;
   total: number;
 
-  constructor ($log: Object, $scope: Object, QuestionWordFactory: Object) {
+  constructor ($log: Object, $scope: Object, QuestionWordFactory: Object, CONFIG: ConfigObject) {
     'ngInject'
 
     this.logger = $log
@@ -25,12 +26,13 @@ class TesterController {
 
     this.index = 0
     this.correctAnswers = 0
-    this.total = 10
+    this.total = 0
 
     QuestionWordFactory
-      .getQuestionnaire(10)
+      .getQuestionnaire(CONFIG.questionnaire.amountOfWords)
       .then(data => {
         this.questionnaire = data
+        this.total = data.length
         $scope.$apply()
       })
   }
