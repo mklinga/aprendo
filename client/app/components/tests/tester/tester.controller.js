@@ -22,16 +22,17 @@ class TesterController {
 
     this.logger.debug(this.from, this.to)
     this.questionnaire = []
-    QuestionWordFactory
-      .getQuestionnaire(10)
-      .then(data => {
-        $scope.vm.questionnaire = data
-        $scope.$apply()
-      })
 
     this.index = 0
     this.correctAnswers = 0
     this.total = 10
+
+    QuestionWordFactory
+      .getQuestionnaire(10)
+      .then(data => {
+        this.questionnaire = data
+        $scope.$apply()
+      })
   }
 
   getResponse (isCorrect: boolean) {

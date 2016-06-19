@@ -16,3 +16,8 @@ export type Logger = {
   warn: Function
 }
 
+export type RestangularType = {
+  all: (param: string) => RestangularType,
+  customGETLIST: (param: string) => Promise
+}
+

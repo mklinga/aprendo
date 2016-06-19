@@ -25,14 +25,14 @@ export type WordConjugation = {
   value: string
 }
 
-export type QuestionWordV1 = {
+export type QuestionWord = {
   word: WordValue,
   conjugation: WordConjugation
 }
 
 export type QuestionWordPair = {
-  question: QuestionWordV1,
-  answer: QuestionWordV1
+  question: QuestionWord,
+  answer: QuestionWord
 }
 
 export type LastAnswer = {

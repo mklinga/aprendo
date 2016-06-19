@@ -20,8 +20,14 @@ describe('TestWord', () => {
     beforeEach(() => {
       controller = makeController()
       controller.word = {
-        answer: { id : 1001, language : "es", person : "3rd", tense : "present", value : "hace" },
-        question: { id : 2001, language : "en", person : "3rd", tense : "present", value : "make" }
+        question: {
+          word: { id: 2001, irregular: true, infinitive: "make", language_id: 2, type_id: 1 },
+          conjugation: { id: 2002, word_id: 2001, person_conjugation_id: 3, time_conjugation_id: 1, value: "make" }
+        },
+        answer: {
+          word: { id: 1001, irregular: true, infinitive: "hacer", language_id: 1, type_id: 1 },
+          conjugation: { id: 1002, word_id: 1001, person_conjugation_id: 3, time_conjugation_id: 1, value: "hace" }
+        }
       }
     })
 

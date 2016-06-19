@@ -16,7 +16,7 @@ describe('WordQuestion', () => {
 
   describe('Template', () => {
     it('has <strong> that equals word.value', () => {
-      expect(WordQuestionTemplate).to.match(/strong.*vm\.word\.value/g)
+      expect(WordQuestionTemplate).to.match(/strong.*vm\.word\.conjugation\.value/g)
     })
   })
 

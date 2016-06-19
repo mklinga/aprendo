@@ -1,13 +1,13 @@
 /* @flow */
 
-import type { Word } from 'types/word'
+import type { QuestionWord } from 'types/word'
 import type { KeyboardEvent } from 'types/events'
 import type { Logger } from 'types/angular'
 
 class WordAnswerController {
 
   answer: string = '';
-  word: Word;
+  word: QuestionWord;
   logger: Logger;
   guess: Function;
 
