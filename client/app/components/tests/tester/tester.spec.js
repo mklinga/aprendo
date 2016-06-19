@@ -3,7 +3,7 @@ import TesterController from './tester.controller'
 import TesterComponent from './tester.component'
 import TesterTemplate from './tester.html'
 
-import questionWordFactory from 'factories/questionWord/questionWord.factory'
+import questionWordFactory from './factories/questionWord/questionWord.factory'
 import constants from 'constants.js'
 
 import { expect } from 'chai'
@@ -22,7 +22,7 @@ describe('Tester', () => {
     let controller
 
     describe('props', () => {
-      beforeEach(inject((_$rootScope_, _$log_, LANGUAGES, Restangular, _$httpBackend_) => {
+      beforeEach(inject((_$rootScope_, _$log_, CONFIG, LANGUAGES, Restangular, _$httpBackend_) => {
         httpBackend = _$httpBackend_
         httpBackend
           .expectGET('/questions/random/10')
@@ -30,7 +30,7 @@ describe('Tester', () => {
 
         makeController = () => {
           const fact = new questionWordFactory(_$log_, Restangular, LANGUAGES)
-          const controller = new TesterController(_$log_, _$rootScope_.$new(), fact)
+          const controller = new TesterController(_$log_, _$rootScope_.$new(), fact, CONFIG)
           controller.finishTest = sinon.spy()
           return controller
         }
@@ -54,13 +54,13 @@ describe('Tester', () => {
 
     describe('(Method) getResponse', () => {
 
-      beforeEach(inject((_$rootScope_, _$log_, LANGUAGES, Restangular, _$httpBackend_) => {
+      beforeEach(inject((_$rootScope_, _$log_, LANGUAGES, Restangular, _$httpBackend_, CONFIG) => {
         scope = _$rootScope_.$new()
         httpBackend = _$httpBackend_
 
         const fact = new questionWordFactory(_$log_, Restangular, LANGUAGES)
 
-        controller = new TesterController(_$log_, scope, fact)
+        controller = new TesterController(_$log_, scope, fact, CONFIG)
         controller.finishTest = sinon.spy()
         httpBackend
           .expectGET('/questions/random/10')

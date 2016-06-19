@@ -1,7 +1,7 @@
-import QuestionWordFactory from 'factories/questionWord/questionWord.factory'
+import QuestionWordFactory from './questionWord.factory'
 import constants from 'constants.js'
 
-import { expect } from '../../../../node_modules/chai/chai'
+import { expect } from 'chai'
 import 'restangular'
 
 describe('(Factory) QuestionWordFactory', () => {
