@@ -1,7 +1,6 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import Common from './common/common'
-import Filters from './filters/filters'
 import Components from './components/components'
 import AppComponent from './app.component'
 import Constants from './constants'
@@ -14,8 +13,7 @@ angular.module('app', [
   'restangular',
   Common.name,
   Components.name,
-  Constants.name,
-  Filters.name
+  Constants.name
 ])
   .config(($locationProvider) => {
     'ngInject'

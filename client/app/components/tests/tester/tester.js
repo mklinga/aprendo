@@ -9,10 +9,11 @@ import testerComponent from './tester.component'
 import wordAnswerComponent from './wordAnswer/wordAnswer.component'
 import wordQuestionComponent from './wordQuestion/wordQuestion.component'
 
-import questionWordFactory from 'factories/questionWord/questionWord.factory'
+import questionWordFactory from './factories/questionWord/questionWord.factory'
+import Filters from './filters/filters'
 
 const testerModule = angular
-  .module('tester', [ uiRouter ])
+  .module('tester', [ uiRouter, Filters.name ])
   .factory('QuestionWordFactory', questionWordFactory)
   .component('successViewer', successViewerComponent)
   .component('testWord', testWordComponent)
