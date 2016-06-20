@@ -3,16 +3,18 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import listWordsComponent from './listWords.component'
+import editWord from './editWord/editWord'
 
 const listWordsModule = angular
-  .module('listWords', [ uiRouter ])
+  .module('listWords', [
+    uiRouter,
+    editWord.name
+  ])
 
   .component('listWords', listWordsComponent)
 
-  .config(($stateProvider, $urlRouterProvider) => {
+  .config(($stateProvider) => {
     'ngInject'
-
-    $urlRouterProvider.otherwise('/')
 
     $stateProvider
       .state('admin-words', {

@@ -25,6 +25,11 @@ export type WordConjugation = {
   value: string
 }
 
+export type Word = {
+  value: WordValue,
+  conjugations: Array<WordConjugation>
+}
+
 export type QuestionWord = {
   word: WordValue,
   conjugation: WordConjugation

@@ -17,15 +17,15 @@ describe('<%= upCaseName %>', () => {
   }))
 
   describe('(Controller) <%= upCaseName %>Controller', () => {
-    it('has a logger', () => { // erase if removing this.name from the controller
+    it('has a logger', () => {
       let controller = makeController()
       expect(controller).to.have.property('logger')
     })
   })
 
   describe('(Template) <%= upCaseName %>Template', () => {
-    it('has name in template', () => {
-      expect(<%= upCaseName %>Template).to.match(/{{\s?vm\.name\s?}}/g)
+    it('is a div with the name as class', () => {
+      expect(<%= upCaseName %>Template).to.match(/<div class="<%= name %>">/g)
     })
   })
 

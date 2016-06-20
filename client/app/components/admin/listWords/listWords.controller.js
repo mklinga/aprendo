@@ -21,6 +21,10 @@ class ListWordsController {
     this.words = await Restangular.all('/words').getList()
     $scope.$apply()
   }
+
+  editWord (id: number) {
+    this.logger.info(id)
+  }
 }
 
 export default ListWordsController

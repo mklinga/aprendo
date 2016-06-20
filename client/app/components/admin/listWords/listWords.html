@@ -3,6 +3,7 @@
   <table>
     <tr ng-repeat="word in vm.words">
       <td>{{ word.infinitive }}</td>
+      <td><a ui-sref="admin-edit-word({ id: word.id })">Edit</a></td>
     </tr>
   </table>
 </div>

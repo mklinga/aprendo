@@ -1,0 +1,10 @@
+<div class="editWord">
+  <h1>editWord</h1>
+  <label for="infinitive">Infinitive</label>
+  <input ng-model="vm.word.value.infinitive" />
+  <h2>Conjugations</h2>
+  <div ng-repeat="conjugation in vm.word.conjugations">
+    <label for="conjugation-{{ conjugation.id }}">{{ conjugation.person_conjugation_id }}</label>
+    <input ng-model="conjugation.value" />
+  </div>
+</div>
