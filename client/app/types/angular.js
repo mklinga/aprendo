@@ -22,6 +22,7 @@ export type Logger = {
 
 export type RestangularType = {
   all: (param: string) => RestangularType,
+  get: (id: any) => Promise,
   getList: () => Promise,
   customGETLIST: (param: string) => Promise
 }

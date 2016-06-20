@@ -1,6 +1,9 @@
 /* @flow */
 
-const TimeConjugationsFactory = ($log, Restangular) => {
+import type { Logger, RestangularType } from 'types/angular'
+import type { TimeConjugationsType } from 'types/timeconjugations'
+
+const TimeConjugationsFactory = function ($log: Logger, Restangular: RestangularType): TimeConjugationsType {
   'ngInject'
 
   this.cachedTimeConjugations = []
@@ -17,12 +20,25 @@ const TimeConjugationsFactory = ($log, Restangular) => {
   }
 
   return {
-    get: (id: number) => {
+    get: async (id: number) => {
       if (!this.cachedTimeConjugations.length) {
-        this.cachedTimeConjugations = [ { id: 1, time: 'present' }, { id: 2, time: 'imperfect' } ]
+        this.cachedTimeConjugations = await Restangular.all('timeconjugations').getList()
       }
 
       return this.returnCached(id)
+    },
+    getLookupTable: async () => {
+      if (!this.cachedTimeConjugations.length) {
+        this.cachedTimeConjugations = await Restangular.all('timeconjugations').getList()
+      }
+
+      return Promise.resolve(
+        this.cachedTimeConjugations
+          .reduce((lookupMap, value) => {
+            lookupMap[value.id] = value
+            return lookupMap
+          }, {})
+      )
     }
   }
 }
