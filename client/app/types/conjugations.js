@@ -1,6 +1,6 @@
 /* @flow */
 
-export type TimeConjugationsType = {
+export type ConjugationsType = {
   get: (id: number) => Promise,
   getLookupTable: () => Promise
 }

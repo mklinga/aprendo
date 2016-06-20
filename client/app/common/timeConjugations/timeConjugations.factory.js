@@ -1,9 +1,9 @@
 /* @flow */
 
 import type { Logger, RestangularType } from 'types/angular'
-import type { TimeConjugationsType } from 'types/timeconjugations'
+import type { ConjugationsType } from 'types/conjugations'
 
-const TimeConjugationsFactory = function ($log: Logger, Restangular: RestangularType): TimeConjugationsType {
+const TimeConjugationsFactory = function ($log: Logger, Restangular: RestangularType): ConjugationsType {
   'ngInject'
 
   this.cachedTimeConjugations = []
