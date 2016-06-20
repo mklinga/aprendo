@@ -9,6 +9,7 @@ class EditWordController {
   logger: Logger;
   $scope: Scope;
   word: Word;
+  conjugationValues: {};
   timeConjugations: {} | ConjugationsType;
   personConjugations: {} | ConjugationsType;
 
@@ -18,7 +19,7 @@ class EditWordController {
 
     this.logger = $log
     this.$scope = $scope
-    this.conjugationMap = {}
+    this.conjugationValues = {}
     this.timeConjugations = {}
     this.personConjugations = {}
 
@@ -56,7 +57,7 @@ class EditWordController {
         return value
       }, {})
 
-    this.logger.info(this.conjugationValues)
+    this.logger.debug(this.conjugationValues)
     this.$scope.$apply()
   }
 }
