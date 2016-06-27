@@ -3,6 +3,7 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import listWordsComponent from './listWords.component'
+import wordServiceFactory from './wordService/wordService.factory'
 import editWord from './editWord/editWord'
 
 const listWordsModule = angular
@@ -12,6 +13,7 @@ const listWordsModule = angular
   ])
 
   .component('listWords', listWordsComponent)
+  .factory('WordService', wordServiceFactory)
 
   .config(($stateProvider) => {
     'ngInject'

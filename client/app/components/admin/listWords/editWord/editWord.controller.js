@@ -1,8 +1,9 @@
 /* @flow */
 
-import type { Logger, RestangularType, Scope } from 'types/angular'
+import type { Logger, Scope } from 'types/angular'
 import type { Word } from 'types/word'
 import type { ConjugationsType } from 'types/conjugations'
+import type { WordServiceType } from 'types/wordService'
 
 class EditWordController {
 
@@ -14,7 +15,7 @@ class EditWordController {
   personConjugations: {} | ConjugationsType;
 
   constructor ($log: Logger, $scope: Scope, $stateParams: { id: number },
-               Restangular: RestangularType, TimeConjugations: ConjugationsType, PersonConjugations: ConjugationsType) {
+               WordService: WordServiceType, TimeConjugations: ConjugationsType, PersonConjugations: ConjugationsType) {
     'ngInject'
 
     this.logger = $log
@@ -28,13 +29,17 @@ class EditWordController {
       return
     }
 
-    this.getAsyncData($stateParams.id, Restangular, TimeConjugations, PersonConjugations)
+    this.getAsyncData($stateParams.id, WordService, TimeConjugations, PersonConjugations)
   }
 
-  async getAsyncData (id: number, Restangular: RestangularType, TimeConjugations: ConjugationsType,
+  saveWord () {
+
+  }
+
+  async getAsyncData (id: number, WordService, TimeConjugations: ConjugationsType,
                      PersonConjugations: ConjugationsType) {
     await this.getConjugationNames(TimeConjugations, PersonConjugations)
-    await this.getWord(id, Restangular)
+    await this.getWord(id, WordService)
   }
 
   async getConjugationNames (TimeConjugations: ConjugationsType, PersonConjugations: ConjugationsType) {
@@ -44,20 +49,11 @@ class EditWordController {
     this.logger.debug('retrieved', this.timeConjugations, this.personConjugations)
   }
 
-  async getWord (id: number, Restangular: RestangularType) {
-    this.word = await Restangular.all('words').get(id)
-    this.logger.debug('Word', this.word, 'fetched')
-    this.conjugationValues = this.word.conjugations
-      .reduce((value, current) => {
-        if (!value[current.time_conjugation_id]) {
-          value[current.time_conjugation_id] = {}
-        }
+  async getWord (id: number, WordService: WordServiceType) {
+    const result = await WordService.get(id)
+    this.word = result.word
+    this.conjugationValues = result.conjugationValues
 
-        value[current.time_conjugation_id][current.person_conjugation_id] = current
-        return value
-      }, {})
-
-    this.logger.debug(this.conjugationValues)
     this.$scope.$apply()
   }
 }
