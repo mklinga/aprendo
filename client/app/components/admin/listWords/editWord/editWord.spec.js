@@ -3,6 +3,8 @@ import EditWordController from './editWord.controller'
 import EditWordComponent from './editWord.component'
 import EditWordTemplate from './editWord.html'
 
+import WordService from '../wordService/wordService.factory'
+
 import TimeConjugations from 'common/timeConjugations/timeConjugations.factory'
 import PersonConjugations from 'common/personConjugations/personConjugations.factory'
 
@@ -23,7 +25,8 @@ describe('EditWord', () => {
 
       const TC = new TimeConjugations(_$log_, Restangular)
       const PC = new PersonConjugations(_$log_, Restangular)
-      controller = new EditWordController(_$log_, $rootScope.$new(), { id: 1 }, Restangular, TC, PC)
+      const WS = new WordService(_$log_, Restangular)
+      controller = new EditWordController(_$log_, $rootScope.$new(), { id: 1 }, WS, TC, PC)
     }))
 
     it('has a logger', (done) => {

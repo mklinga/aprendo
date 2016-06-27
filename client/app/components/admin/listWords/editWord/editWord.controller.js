@@ -36,7 +36,7 @@ class EditWordController {
 
   }
 
-  async getAsyncData (id: number, WordService, TimeConjugations: ConjugationsType,
+  async getAsyncData (id: number, WordService: WordServiceType, TimeConjugations: ConjugationsType,
                      PersonConjugations: ConjugationsType) {
     await this.getConjugationNames(TimeConjugations, PersonConjugations)
     await this.getWord(id, WordService)
