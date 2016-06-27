@@ -24,22 +24,24 @@ class EditWordController {
     this.timeConjugations = {}
     this.personConjugations = {}
 
+    this.WordService = WordService
+
     if (!$stateParams.id) {
       this.logger.error('No id found for word!')
       return
     }
 
-    this.getAsyncData($stateParams.id, WordService, TimeConjugations, PersonConjugations)
+    this.getAsyncData($stateParams.id, TimeConjugations, PersonConjugations)
   }
 
   saveWord () {
-
+    this.WordService.save(this.word)
   }
 
-  async getAsyncData (id: number, WordService: WordServiceType, TimeConjugations: ConjugationsType,
+  async getAsyncData (id: number, TimeConjugations: ConjugationsType,
                      PersonConjugations: ConjugationsType) {
     await this.getConjugationNames(TimeConjugations, PersonConjugations)
-    await this.getWord(id, WordService)
+    await this.getWord(id)
   }
 
   async getConjugationNames (TimeConjugations: ConjugationsType, PersonConjugations: ConjugationsType) {
@@ -49,10 +51,21 @@ class EditWordController {
     this.logger.debug('retrieved', this.timeConjugations, this.personConjugations)
   }
 
-  async getWord (id: number, WordService: WordServiceType) {
-    const result = await WordService.get(id)
-    this.word = result.word
-    this.conjugationValues = result.conjugationValues
+  async getWord (id: number) {
+    const result = await this.WordService.get(id)
+
+    const conjugationValues = result.conjugations
+      .reduce((value, current) => {
+        if (!value[current.time_conjugation_id]) {
+          value[current.time_conjugation_id] = {}
+        }
+
+        value[current.time_conjugation_id][current.person_conjugation_id] = current
+        return value
+      }, {})
+
+    this.word = result
+    this.conjugationValues = conjugationValues
 
     this.$scope.$apply()
   }

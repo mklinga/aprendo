@@ -1,6 +1,6 @@
 <div class="editWord">
   <h1>editWord</h1>
-  <button ng-click="saveWord()">Save</button>
+  <button ng-click="vm.saveWord()">Save</button>
   <div>
     <label for="infinitive">Infinitive</label>
     <input ng-model="vm.word.value.infinitive" />
@@ -9,7 +9,10 @@
       <h3>{{ timeConjugation.time }}</h3>
       <div ng-repeat="conjugation in vm.personConjugations">
         <label for="conjugation-{{ conjugation.id }}">{{ conjugation.person }}</label>
-        <input ng-model="vm.conjugationValues[timeConjugation.id][conjugation.id].value" />
+        <input
+          type="text"
+          ng-model="vm.conjugationValues[timeConjugation.id][conjugation.id].value" />
+        </edit-word-field>
       </div>
     </div>
   </div>

@@ -2,29 +2,27 @@
 
 import type { Logger, RestangularType } from 'types/angular'
 import type { WordServiceType } from 'types/wordService'
+import type { Word } from 'types/word'
 
 const WordServiceFactory = function ($log: Logger, Restangular: RestangularType): WordServiceType {
   'ngInject'
 
-  this.getWord = async (id: number) => {
-    const word = await Restangular.all('words').get(id)
-    $log.debug('Word', word, 'fetched')
-    const conjugationValues = word.conjugations
-      .reduce((value, current) => {
-        if (!value[current.time_conjugation_id]) {
-          value[current.time_conjugation_id] = {}
-        }
+  // this.serializeWord = (conjugations: Array<WordConjugation>): Word => {
 
-        value[current.time_conjugation_id][current.person_conjugation_id] = current
-        return value
-      }, {})
+  // }
 
-    $log.debug(this.conjugationValues)
-    return { word, conjugationValues }
+  this.getSingleWord = async (id: number): Word => {
+    return await Restangular.all('words').get(id)
+  }
+
+  this.saveWord = async (word: Word) => {
+    $log.debug('Saving', word)
+    word.save()
   }
 
   return {
-    get: this.getWord
+    get: this.getSingleWord,
+    save: this.saveWord
   }
 }
 
