@@ -18,7 +18,7 @@ export type WordValue = {
 }
 
 export type WordConjugation = {
-  id: number,
+  id?: number,
   word_id: number,
   person_conjugation_id: number,
   time_conjugation_id: number,
@@ -26,6 +26,7 @@ export type WordConjugation = {
 }
 
 export type Word = {
+  id?: number,
   value: WordValue,
   conjugations: Array<WordConjugation>
 }

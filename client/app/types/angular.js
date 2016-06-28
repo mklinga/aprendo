@@ -1,5 +1,7 @@
 /* @flow */
 
+import type { Word } from 'types/word'
+
 export type AngularComponent = {
   restrict: string,
   bindings: Object,
@@ -20,10 +22,14 @@ export type Logger = {
   warn: Function
 }
 
+export type RestangularWord = Word & { save: () => Promise }
+
 export type RestangularType = {
   all: (param: string) => RestangularType,
+  copy: (item: any) => any,
+  customGETLIST: (param: string) => Promise,
   get: (id: any) => Promise,
   getList: () => Promise,
-  customGETLIST: (param: string) => Promise
+  one: (param: string, id: number) => RestangularType
 }
 

@@ -13,6 +13,7 @@ class EditWordController {
   conjugationValues: {};
   timeConjugations: {} | ConjugationsType;
   personConjugations: {} | ConjugationsType;
+  WordService: WordServiceType;
 
   constructor ($log: Logger, $scope: Scope, $stateParams: { id: number },
                WordService: WordServiceType, TimeConjugations: ConjugationsType, PersonConjugations: ConjugationsType) {
@@ -54,6 +55,23 @@ class EditWordController {
   async getWord (id: number) {
     const result = await this.WordService.get(id)
 
+    const conjugationMatch = (time, person) => conjugation =>
+          conjugation.time_conjugation_id === Number(time) && conjugation.person_conjugation_id === Number(person)
+
+    // If the word doesn't contain all the necessary fields, we add them as empty
+    for (let t in this.timeConjugations) {
+      for (let p in this.personConjugations) {
+        if (!result.conjugations.find(conjugationMatch(t, p))) {
+          this.logger.debug('Missing conjugation', t, p)
+          result.conjugations.push({
+            word_id: result.value.id,
+            person_conjugation_id: Number(p),
+            time_conjugation_id: Number(t),
+            value: ''
+          })
+        }
+      }
+    }
     const conjugationValues = result.conjugations
       .reduce((value, current) => {
         if (!value[current.time_conjugation_id]) {
